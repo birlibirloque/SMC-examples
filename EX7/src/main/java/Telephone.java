@@ -139,7 +139,7 @@ public final class Telephone
         _fsm = new TelephoneContext(this);
 
         // DEBUG
-        // _fsm.setDebugFlag(true);
+        _fsm.setDebugFlag(true);
     }
 
     public void start()
@@ -594,7 +594,7 @@ public final class Telephone
 
     private void _loadSounds()
     {
-        String directory = "jar:file:./telephone.jar!/sounds/";
+        String directory = "/sounds/";
         String urlString = "";
         URL soundURL;
         AudioClip audioClip;
@@ -605,249 +605,232 @@ public final class Telephone
         _dtmf = new AudioClip[12];
         for (i = 0; i < 12; ++i)
         {
-            try
-            {
-                urlString = directory +
-                            "touch_tone_" +
-                            Integer.toString(i) +
-                            ".au";
-                soundURL = new URL(urlString);
-                _dtmf[i] = Applet.newAudioClip(soundURL);
-            }
-            catch (MalformedURLException urlex)
-            {
-                System.err.println("Telephone: \"" +
-                                   urlString +
-                                   "\" is a bad URL.");
-            }
+            urlString = directory +
+                        "touch_tone_" +
+                        Integer.toString(i) +
+                        ".au";
+            soundURL = getClass().getResource(urlString); 
+            _dtmf[i] = Applet.newAudioClip(soundURL);
         }
 
         // Load in sound URLs.
-        try
-        {
-            _audioMap = new HashMap<String, AudioData>();
+        _audioMap = new HashMap<String, AudioData>();
 
-            urlString = directory + "ring.au";
-            soundURL = new URL(urlString);
-            audioData = new AudioData(soundURL, 4000);
-            _audioMap.put("ringing", audioData);
+        urlString = directory + "ring.au";
+        soundURL = getClass().getResource(urlString); 
+        audioData = new AudioData(soundURL, 4000);
+        _audioMap.put("ringing", audioData);
 
-            urlString = directory + "dialtone.au";
-            soundURL = new URL(urlString);
-            audioData = new AudioData(soundURL, 1000);
-            _audioMap.put("dialtone", audioData);
+        urlString = directory + "dialtone.au";
+        soundURL = getClass().getResource(urlString); 
+        audioData = new AudioData(soundURL, 1000);
+        _audioMap.put("dialtone", audioData);
 
-            urlString = directory + "busy_signal.au";
-            soundURL = new URL(urlString);
-            audioData = new AudioData(soundURL, 1000);
-            _audioMap.put("busy", audioData);
+        urlString = directory + "busy_signal.au";
+        soundURL = getClass().getResource(urlString); 
+        audioData = new AudioData(soundURL, 1000);
+        _audioMap.put("busy", audioData);
 
-            urlString = directory + "fast_busy_signal.au";
-            soundURL = new URL(urlString);
-            audioData = new AudioData(soundURL, 1000);
-            _audioMap.put("fast_busy", audioData);
+        urlString = directory + "fast_busy_signal.au";
+        soundURL = getClass().getResource(urlString); 
+        audioData = new AudioData(soundURL, 1000);
+        _audioMap.put("fast_busy", audioData);
 
-            urlString = directory + "phone_off_hook.au";
-            soundURL = new URL(urlString);
-            audioData = new AudioData(soundURL, 500);
-            _audioMap.put("phone_off_hook", audioData);
+        urlString = directory + "phone_off_hook.au";
+        soundURL = getClass().getResource(urlString); 
+        audioData = new AudioData(soundURL, 500);
+        _audioMap.put("phone_off_hook", audioData);
 
-            urlString = directory + "911.au";
-            soundURL = new URL(urlString);
-            audioData = new AudioData(soundURL, 13000);
-            _audioMap.put("911", audioData);
+        urlString = directory + "911.au";
+        soundURL = getClass().getResource(urlString); 
+        audioData = new AudioData(soundURL, 13000);
+        _audioMap.put("911", audioData);
 
-            urlString = directory + "and.au";
-            soundURL = new URL(urlString);
-            audioData = new AudioData(soundURL, 750);
-            _audioMap.put("and", audioData);
+        urlString = directory + "and.au";
+        soundURL = getClass().getResource(urlString); 
+        audioData = new AudioData(soundURL, 750);
+        _audioMap.put("and", audioData);
 
-            urlString = directory + "50_cents_please.au";
-            soundURL = new URL(urlString);
-            audioData = new AudioData(soundURL, 6000);
-            _audioMap.put("50_cents_please", audioData);
+        urlString = directory + "50_cents_please.au";
+        soundURL = getClass().getResource(urlString); 
+        audioData = new AudioData(soundURL, 6000);
+        _audioMap.put("50_cents_please", audioData);
 
-            urlString = directory + "could_not_be_completed.au";
-            soundURL = new URL(urlString);
-            audioData = new AudioData(soundURL, 4000);
-            _audioMap.put("could_not_be_completed", audioData);
+        urlString = directory + "could_not_be_completed.au";
+        soundURL = getClass().getResource(urlString); 
+        audioData = new AudioData(soundURL, 4000);
+        _audioMap.put("could_not_be_completed", audioData);
 
-            urlString = directory + "exactly.au";
-            soundURL = new URL(urlString);
-            audioData = new AudioData(soundURL, 1000);
-            _audioMap.put("exactly", audioData);
+        urlString = directory + "exactly.au";
+        soundURL = getClass().getResource(urlString); 
+        audioData = new AudioData(soundURL, 1000);
+        _audioMap.put("exactly", audioData);
 
-            urlString = directory + "oclock.au";
-            soundURL = new URL(urlString);
-            audioData = new AudioData(soundURL, 1000);
-            _audioMap.put("oclock", audioData);
+        urlString = directory + "oclock.au";
+        soundURL = getClass().getResource(urlString); 
+        audioData = new AudioData(soundURL, 1000);
+        _audioMap.put("oclock", audioData);
 
-            urlString = directory + "oh.au";
-            soundURL = new URL(urlString);
-            audioData = new AudioData(soundURL, 1000);
-            _audioMap.put("oh", audioData);
+        urlString = directory + "oh.au";
+        soundURL = getClass().getResource(urlString); 
+        audioData = new AudioData(soundURL, 1000);
+        _audioMap.put("oh", audioData);
 
-            urlString = directory + "second.au";
-            soundURL = new URL(urlString);
-            audioData = new AudioData(soundURL, 1200);
-            _audioMap.put("second", audioData);
+        urlString = directory + "second.au";
+        soundURL = getClass().getResource(urlString); 
+        audioData = new AudioData(soundURL, 1200);
+        _audioMap.put("second", audioData);
 
-            urlString = directory + "seconds.au";
-            soundURL = new URL(urlString);
-            audioData = new AudioData(soundURL, 1400);
-            _audioMap.put("seconds", audioData);
+        urlString = directory + "seconds.au";
+        soundURL = getClass().getResource(urlString); 
+        audioData = new AudioData(soundURL, 1400);
+        _audioMap.put("seconds", audioData);
 
-            urlString =
-                directory + "the_number_you_have_dialed.au";
-            soundURL = new URL(urlString);
-            audioData = new AudioData(soundURL, 1800);
-            _audioMap.put("you_dialed", audioData);
+        urlString =
+            directory + "the_number_you_have_dialed.au";
+        soundURL = getClass().getResource(urlString); 
+        audioData = new AudioData(soundURL, 1800);
+        _audioMap.put("you_dialed", audioData);
 
-            urlString = directory + "the_time_is.au";
-            soundURL = new URL(urlString);
-            audioData = new AudioData(soundURL, 1100);
-            _audioMap.put("the_time_is", audioData);
+        urlString = directory + "the_time_is.au";
+        soundURL = getClass().getResource(urlString); 
+        audioData = new AudioData(soundURL, 1100);
+        _audioMap.put("the_time_is", audioData);
 
-            urlString = directory + "nyctemp.au";
-            soundURL = new URL(urlString);
-            audioData = new AudioData(soundURL, 18500);
-            _audioMap.put("NYC_temp", audioData);
+        urlString = directory + "nyctemp.au";
+        soundURL = getClass().getResource(urlString); 
+        audioData = new AudioData(soundURL, 18500);
+        _audioMap.put("NYC_temp", audioData);
 
-            urlString = directory + "AM.au";
-            soundURL = new URL(urlString);
-            audioData = new AudioData(soundURL, 1250);
-            _audioMap.put("AM", audioData);
+        urlString = directory + "AM.au";
+        soundURL = getClass().getResource(urlString); 
+        audioData = new AudioData(soundURL, 1250);
+        _audioMap.put("AM", audioData);
 
-            urlString = directory + "PM.au";
-            soundURL = new URL(urlString);
-            audioData = new AudioData(soundURL, 1000);
-            _audioMap.put("PM", audioData);
+        urlString = directory + "PM.au";
+        soundURL = getClass().getResource(urlString); 
+        audioData = new AudioData(soundURL, 1000);
+        _audioMap.put("PM", audioData);
 
-            urlString = directory + "0.au";
-            soundURL = new URL(urlString);
-            audioData = new AudioData(soundURL, 1000);
-            _audioMap.put("0", audioData);
+        urlString = directory + "0.au";
+        soundURL = getClass().getResource(urlString); 
+        audioData = new AudioData(soundURL, 1000);
+        _audioMap.put("0", audioData);
 
-            urlString = directory + "1.au";
-            soundURL = new URL(urlString);
-            audioData = new AudioData(soundURL, 900);
-            _audioMap.put("1", audioData);
+        urlString = directory + "1.au";
+        soundURL = getClass().getResource(urlString); 
+        audioData = new AudioData(soundURL, 900);
+        _audioMap.put("1", audioData);
 
-            urlString = directory + "2.au";
-            soundURL = new URL(urlString);
-            audioData = new AudioData(soundURL, 900);
-            _audioMap.put("2", audioData);
+        urlString = directory + "2.au";
+        soundURL = getClass().getResource(urlString); 
+        audioData = new AudioData(soundURL, 900);
+        _audioMap.put("2", audioData);
 
-            urlString = directory + "3.au";
-            soundURL = new URL(urlString);
-            audioData = new AudioData(soundURL, 1000);
-            _audioMap.put("3", audioData);
+        urlString = directory + "3.au";
+        soundURL = getClass().getResource(urlString); 
+        audioData = new AudioData(soundURL, 1000);
+        _audioMap.put("3", audioData);
 
-            urlString = directory + "4.au";
-            soundURL = new URL(urlString);
-            audioData = new AudioData(soundURL, 900);
-            _audioMap.put("4", audioData);
+        urlString = directory + "4.au";
+        soundURL = getClass().getResource(urlString); 
+        audioData = new AudioData(soundURL, 900);
+        _audioMap.put("4", audioData);
 
-            urlString = directory + "5.au";
-            soundURL = new URL(urlString);
-            audioData = new AudioData(soundURL, 900);
-            _audioMap.put("5", audioData);
+        urlString = directory + "5.au";
+        soundURL = getClass().getResource(urlString); 
+        audioData = new AudioData(soundURL, 900);
+        _audioMap.put("5", audioData);
 
-            urlString = directory + "6.au";
-            soundURL = new URL(urlString);
-            audioData = new AudioData(soundURL, 850);
-            _audioMap.put("6", audioData);
+        urlString = directory + "6.au";
+        soundURL = getClass().getResource(urlString); 
+        audioData = new AudioData(soundURL, 850);
+        _audioMap.put("6", audioData);
 
-            urlString = directory + "7.au";
-            soundURL = new URL(urlString);
-            audioData = new AudioData(soundURL, 1250);
-            _audioMap.put("7", audioData);
+        urlString = directory + "7.au";
+        soundURL = getClass().getResource(urlString); 
+        audioData = new AudioData(soundURL, 1250);
+        _audioMap.put("7", audioData);
 
-            urlString = directory + "8.au";
-            soundURL = new URL(urlString);
-            audioData = new AudioData(soundURL, 1000);
-            _audioMap.put("8", audioData);
+        urlString = directory + "8.au";
+        soundURL = getClass().getResource(urlString); 
+        audioData = new AudioData(soundURL, 1000);
+        _audioMap.put("8", audioData);
 
-            urlString = directory + "9.au";
-            soundURL = new URL(urlString);
-            audioData = new AudioData(soundURL, 900);
-            _audioMap.put("9", audioData);
+        urlString = directory + "9.au";
+        soundURL = getClass().getResource(urlString); 
+        audioData = new AudioData(soundURL, 900);
+        _audioMap.put("9", audioData);
 
-            urlString = directory + "10.au";
-            soundURL = new URL(urlString);
-            audioData = new AudioData(soundURL, 750);
-            _audioMap.put("10", audioData);
+        urlString = directory + "10.au";
+        soundURL = getClass().getResource(urlString); 
+        audioData = new AudioData(soundURL, 750);
+        _audioMap.put("10", audioData);
 
-            urlString = directory + "11.au";
-            soundURL = new URL(urlString);
-            audioData = new AudioData(soundURL, 1000);
-            _audioMap.put("11", audioData);
+        urlString = directory + "11.au";
+        soundURL = getClass().getResource(urlString); 
+        audioData = new AudioData(soundURL, 1000);
+        _audioMap.put("11", audioData);
 
-            urlString = directory + "12.au";
-            soundURL = new URL(urlString);
-            audioData = new AudioData(soundURL, 1250);
-            _audioMap.put("12", audioData);
+        urlString = directory + "12.au";
+        soundURL = getClass().getResource(urlString); 
+        audioData = new AudioData(soundURL, 1250);
+        _audioMap.put("12", audioData);
 
-            urlString = directory + "13.au";
-            soundURL = new URL(urlString);
-            audioData = new AudioData(soundURL, 1250);
-            _audioMap.put("13", audioData);
+        urlString = directory + "13.au";
+        soundURL = getClass().getResource(urlString); 
+        audioData = new AudioData(soundURL, 1250);
+        _audioMap.put("13", audioData);
 
-            urlString = directory + "14.au";
-            soundURL = new URL(urlString);
-            audioData = new AudioData(soundURL, 1250);
-            _audioMap.put("14", audioData);
+        urlString = directory + "14.au";
+        soundURL = getClass().getResource(urlString); 
+        audioData = new AudioData(soundURL, 1250);
+        _audioMap.put("14", audioData);
 
-            urlString = directory + "15.au";
-            soundURL = new URL(urlString);
-            audioData = new AudioData(soundURL, 1250);
-            _audioMap.put("15", audioData);
+        urlString = directory + "15.au";
+        soundURL = getClass().getResource(urlString); 
+        audioData = new AudioData(soundURL, 1250);
+        _audioMap.put("15", audioData);
 
-            urlString = directory + "16.au";
-            soundURL = new URL(urlString);
-            audioData = new AudioData(soundURL, 1250);
-            _audioMap.put("16", audioData);
+        urlString = directory + "16.au";
+        soundURL = getClass().getResource(urlString); 
+        audioData = new AudioData(soundURL, 1250);
+        _audioMap.put("16", audioData);
 
-            urlString = directory + "17.au";
-            soundURL = new URL(urlString);
-            audioData = new AudioData(soundURL, 1500);
-            _audioMap.put("17", audioData);
+        urlString = directory + "17.au";
+        soundURL = getClass().getResource(urlString); 
+        audioData = new AudioData(soundURL, 1500);
+        _audioMap.put("17", audioData);
 
-            urlString = directory + "18.au";
-            soundURL = new URL(urlString);
-            audioData = new AudioData(soundURL, 1250);
-            _audioMap.put("18", audioData);
+        urlString = directory + "18.au";
+        soundURL = getClass().getResource(urlString); 
+        audioData = new AudioData(soundURL, 1250);
+        _audioMap.put("18", audioData);
 
-            urlString = directory + "19.au";
-            soundURL = new URL(urlString);
-            audioData = new AudioData(soundURL, 1250);
-            _audioMap.put("19", audioData);
+        urlString = directory + "19.au";
+        soundURL = getClass().getResource(urlString); 
+        audioData = new AudioData(soundURL, 1250);
+        _audioMap.put("19", audioData);
 
-            urlString = directory + "20.au";
-            soundURL = new URL(urlString);
-            audioData = new AudioData(soundURL, 1250);
-            _audioMap.put("20", audioData);
+        urlString = directory + "20.au";
+        soundURL = getClass().getResource(urlString); 
+        audioData = new AudioData(soundURL, 1250);
+        _audioMap.put("20", audioData);
 
-            urlString = directory + "30.au";
-            soundURL = new URL(urlString);
-            audioData = new AudioData(soundURL, 1000);
-            _audioMap.put("30", audioData);
+        urlString = directory + "30.au";
+        soundURL = getClass().getResource(urlString); 
+        audioData = new AudioData(soundURL, 1000);
+        _audioMap.put("30", audioData);
 
-            urlString = directory + "40.au";
-            soundURL = new URL(urlString);
-            audioData = new AudioData(soundURL, 1000);
-            _audioMap.put("40", audioData);
+        urlString = directory + "40.au";
+        soundURL = getClass().getResource(urlString); 
+        audioData = new AudioData(soundURL, 1000);
+        _audioMap.put("40", audioData);
 
-            urlString = directory + "50.au";
-            soundURL = new URL(urlString);
-            audioData = new AudioData(soundURL, 1000);
-            _audioMap.put("50", audioData);
-        }
-        catch (MalformedURLException malex)
-        {
-            System.err.println("Unknown URL: " +
-                               urlString);
-        }
+        urlString = directory + "50.au";
+        soundURL = getClass().getResource(urlString); 
+        audioData = new AudioData(soundURL, 1000);
+        _audioMap.put("50", audioData);
 
         return;
     }
